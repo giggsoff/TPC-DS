@@ -120,8 +120,26 @@ set_memory_limit()
 
 set_concurrency()
 {
-	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET CONCURRENCY 25;\""
-	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET CONCURRENCY 25;"
+	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET CONCURRENCY 40;\""
+	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET CONCURRENCY 40;"
+}
+
+set_cpu_rate_limit()
+{
+	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET cpu_rate_limit 50;\""
+	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET cpu_rate_limit 50;"
+}
+
+set_memory_shared_quota()
+{
+	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET memory_shared_quota 15;\""
+	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET memory_shared_quota 15;"
+}
+
+set_memory_spill_ratio()
+{
+	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET memory_spill_ratio 15;\""
+	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET memory_spill_ratio 15;"
 }
 
 
@@ -132,6 +150,9 @@ if [[ "$VERSION" == *"gpdb"* ]]; then
 	copy_config
 	set_memory_limit
 	set_concurrency
+	set_cpu_rate_limit
+	set_memory_shared_quota
+	set_memory_spill_ratio
 fi
 set_search_path
 
