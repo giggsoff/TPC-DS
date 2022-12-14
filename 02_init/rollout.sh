@@ -132,8 +132,8 @@ set_cpu_rate_limit()
 
 set_memory_shared_quota()
 {
-	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET memory_shared_quota 15;\""
-	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET memory_shared_quota 15;"
+	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET memory_shared_quota 80;\""
+	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET memory_shared_quota 80;"
 }
 
 set_memory_spill_ratio()
